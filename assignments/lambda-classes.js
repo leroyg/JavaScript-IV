@@ -42,6 +42,14 @@ class Person {
     }
 }
 
+const onePerson = new Person({
+    name: 'Jason',
+    age: 721,
+    location: `South Pole`,
+    gender: 'Non-Binary',
+});
+
+console.log(onePerson.speak());
 // #### Instructor
 
 class Instructor extends Person {
@@ -54,12 +62,25 @@ class Instructor extends Person {
     }
 
     demo(subject) {
-        return `Today we are learning about ${this.subject}.`;
+        return `Today we are learning about ${subject}.`;
     }
     grade(student, subject) {
-        return `${student.name} recieves a perfect score on ${subject}.`;
+        return `${student} recieves a perfect score on ${subject}.`;
     }
-}
+};
+
+const oneTeacher = new Instructor({
+    name: `LaMont`,
+    age: 27,
+    location: `The Moon`,
+    gender: `M`,
+    specialty: `Maths`,
+    favLanguage: `F#`,
+    catchPhrase: `Whoa nelly!`,
+});
+
+console.log(oneTeacher.demo(`Maths`));
+console.log(oneTeacher.grade(`Jacob`,`Maths`));
 
 // * Now that we have a Person as our base class, we'll build our Instructor class.
 // * Instructor uses the same attributes that have been set up by Person
@@ -72,6 +93,47 @@ class Instructor extends Person {
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 
 // #### Student
+class Student extends Person {
+    constructor(attributes) {
+        super(attributes);
+        this.previousBackground = attributes.previousBackground;
+        this.className = attributes.className;
+        this.favSubjects = attributes.favSubjects;
+    }
+
+    listsSubjects for(let key in this.favSubjects) {
+        console.log(this.favSubjects[key]);
+    }
+    
+
+    PRAssignment(subject) {
+        return `${this.name} has submitted a PR for ${subject}.`;
+    }
+
+    sprintChallenge(subject){
+        return `${this.name} has begun a sprint challenge on ${subject}.`;
+    };
+}
+
+const oneStudent = new Student({
+    name: `Terry`,
+    age: 99,
+    location: `Pluto`,
+    gender: `F`,
+    previousBackground: `PS192`,
+    className: `History101`,
+    favSubjects: {
+     subject1: `Java`,
+     subject2: `Assembly`,
+     subject3: `English`,
+    }
+
+});
+
+console.log(oneStudent);
+// console.log(oneStudent.listsSubjects());
+console.log(oneStudent.PRAssignment(`History 202`));
+console.log(oneStudent.sprintChallenge(`Judo`));
 
 // * Now we need some students!
 // * Student uses the same attributes that have been set up by Person
@@ -85,7 +147,36 @@ class Instructor extends Person {
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
 // #### Project Manager
+class ProjectManagers extends Instructor {
+    constructor(attributes) {
+        super(attributes);
+        this.gradClassName = attributes.gradClassName;
+        this.favInsructor = attributes.favInsructor;
+    }
 
+    standUp(slackChannel){
+        console.log(`${this.name} announces to ${slackChannel}, @channel standy times!`);
+    }
+
+    debugsCode(student, subject){
+         console.log(`${this.name} debugs ${student}'s code on ${subject}`);
+    }
+};
+
+const msJenkins = new ProjectManagers({
+    gradClassName: `Anything`,
+    name: `Ms Jenkins`,
+    age: 78,
+    location: `Uranus`,
+    gender: `F`,
+    specialty: `Code Things`,
+    favLanguage: `Java`,
+    catchPhrase: `Guns Up!`,
+    favInsructor: `Jones`,
+
+});
+msJenkins.standUp(`Everyone`);
+msJenkins.debugsCode(`James`,`CS800`);
 // * Now that we have instructors and students, we'd be nowhere without our PM's
 // * ProjectManagers are extensions of Instructors
 // * ProjectManagers have the following unique props:
