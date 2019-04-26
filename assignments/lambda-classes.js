@@ -80,7 +80,7 @@ const oneTeacher = new Instructor({
 });
 
 console.log(oneTeacher.demo(`Maths`));
-console.log(oneTeacher.grade(`Jacob`,`Maths`));
+console.log(oneTeacher.grade(`Jacob`, `Maths`));
 
 // * Now that we have a Person as our base class, we'll build our Instructor class.
 // * Instructor uses the same attributes that have been set up by Person
@@ -99,20 +99,21 @@ class Student extends Person {
         this.previousBackground = attributes.previousBackground;
         this.className = attributes.className;
         this.favSubjects = attributes.favSubjects;
-    }
+    };
 
-    listsSubjects for(let key in this.favSubjects) {
-        console.log(this.favSubjects[key]);
-    }
-    
+    listsSubjects() {
+        for (let key in this.favSubjects) {
+            console.log(this.favSubjects[key]);
+        }
+    } /// iterates over the array, by the key
 
     PRAssignment(subject) {
         return `${this.name} has submitted a PR for ${subject}.`;
     }
 
-    sprintChallenge(subject){
+    sprintChallenge(subject) {
         return `${this.name} has begun a sprint challenge on ${subject}.`;
-    };
+    }
 }
 
 const oneStudent = new Student({
@@ -123,9 +124,9 @@ const oneStudent = new Student({
     previousBackground: `PS192`,
     className: `History101`,
     favSubjects: {
-     subject1: `Java`,
-     subject2: `Assembly`,
-     subject3: `English`,
+        subject1: `Java`,
+        subject2: `Assembly`,
+        subject3: `English`,
     }
 
 });
@@ -134,7 +135,7 @@ console.log(oneStudent);
 // console.log(oneStudent.listsSubjects());
 console.log(oneStudent.PRAssignment(`History 202`));
 console.log(oneStudent.sprintChallenge(`Judo`));
-
+oneStudent.listsSubjects();
 // * Now we need some students!
 // * Student uses the same attributes that have been set up by Person
 // * Student has the following unique props:
@@ -154,12 +155,12 @@ class ProjectManagers extends Instructor {
         this.favInsructor = attributes.favInsructor;
     }
 
-    standUp(slackChannel){
+    standUp(slackChannel) {
         console.log(`${this.name} announces to ${slackChannel}, @channel standy times!`);
     }
 
-    debugsCode(student, subject){
-         console.log(`${this.name} debugs ${student}'s code on ${subject}`);
+    debugsCode(student, subject) {
+        console.log(`${this.name} debugs ${student}'s code on ${subject}`);
     }
 };
 
@@ -176,7 +177,8 @@ const msJenkins = new ProjectManagers({
 
 });
 msJenkins.standUp(`Everyone`);
-msJenkins.debugsCode(`James`,`CS800`);
+msJenkins.debugsCode(`James`, `CS800`);
+
 // * Now that we have instructors and students, we'd be nowhere without our PM's
 // * ProjectManagers are extensions of Instructors
 // * ProjectManagers have the following unique props:
